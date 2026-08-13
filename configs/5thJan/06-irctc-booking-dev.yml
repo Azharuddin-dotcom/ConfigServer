@@ -23,19 +23,17 @@ spring:
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
-
       acks: all
 
       properties:
-        enable:
-          idempotence: true
+        enable.idempotence: true
         retries: 2147483647
-        max:
-          in:
-            flight:
-              requests:
-                per:
-                  connection: 5
+        max.in.flight.requests.per.connection: 5
+
+  cloud:
+    openfeign:
+      micrometer:
+        enabled: true
 
 server:
   port: 8080
@@ -56,8 +54,8 @@ management:
 
 info:
   application:
-    name: Payment Service
-    description: IRCTC Payment Microservice
+    name: IRCTC Booking Service
+    description: IRCTC Booking Microservice
     version: 1.0.0
 
 eureka:
