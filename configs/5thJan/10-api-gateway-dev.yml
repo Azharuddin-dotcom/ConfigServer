@@ -10,6 +10,30 @@ spring:
       host: localhost
       port: 6379
 
+  cloud:
+    gateway:
+      server:
+        webflux:
+
+          routes:
+
+            - id: irctc-booking-service
+
+              uri: lb://06-IRCTC-BOOKING
+
+              predicates:
+                - Path=/irctc/booking/**
+
+              filters:
+
+                - name: RequestRateLimiter
+
+                  args:
+                    redis-rate-limiter.replenishRate: 1
+                    redis-rate-limiter.burstCapacity: 5
+                    redis-rate-limiter.requestedTokens: 1
+                    key-resolver: "#{@ipKeyResolver}"
+
 eureka:
   instance:
     prefer-ip-address: true
