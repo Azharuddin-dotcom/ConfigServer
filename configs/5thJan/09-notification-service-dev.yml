@@ -19,9 +19,11 @@ spring:
       properties:
         spring.deserializer.value.delegate.class: org.springframework.kafka.support.serializer.JsonDeserializer
 
-        spring.json.trusted.packages: "payment.service.event,notification.event"
+        spring.json.trusted.packages: "notification.event"
 
-        spring.json.type.mapping: "payment.service.event.PaymentCompletedEvent:notification.event.PaymentCompletedEvent"
+        spring.json.value.default.type: "notification.event.PaymentCompletedEvent"
+
+        spring.json.use.type.headers: false
 
 eureka:
   client:
