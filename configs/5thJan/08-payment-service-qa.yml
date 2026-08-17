@@ -29,6 +29,9 @@ spring:
       retries: 2147483647
       max-in-flight-requests-per-connection: 5
 
+      properties:
+        spring.json.type.mapping: "paymentCompleted:payment.service.event.PaymentCompletedEvent"
+
 server:
   port: 8081
 
