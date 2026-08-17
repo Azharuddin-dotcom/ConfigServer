@@ -2,6 +2,9 @@ server:
   port: 8087
 
 spring:
+  application:
+    name: 09-notification-service
+
   kafka:
     bootstrap-servers: localhost:9092
 
@@ -14,10 +17,8 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
 
       properties:
-        spring:
-          json:
-            trusted:
-              packages: "*"
+        spring.json.trusted.packages: "*"
+        spring.json.value.default.type: notification.event.PaymentCompletedEvent
 
 eureka:
   client:
